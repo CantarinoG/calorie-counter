@@ -1,13 +1,27 @@
-import 'package:macro_counter/models/food.dart';
-
 class Meal {
   final int id;
   final DateTime datetime;
-  final Food food;
+  final int foodId;
 
   Meal(
     this.id,
     this.datetime,
-    this.food,
+    this.foodId,
   );
+
+  static Meal fromMap(Map<String, dynamic> map) {
+    return Meal(
+      map['id'],
+      map['datetime'],
+      map['foodId'],
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'datetime': datetime.toString(),
+      'foodId': foodId,
+    };
+  }
 }
