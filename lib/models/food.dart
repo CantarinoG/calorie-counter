@@ -5,6 +5,7 @@ class Food {
   final double carbs;
   final double proteins;
   final double fats;
+  bool isDeleted = false;
 
   Food(
     this.id,
