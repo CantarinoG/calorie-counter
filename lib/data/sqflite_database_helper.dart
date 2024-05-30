@@ -18,7 +18,7 @@ class SqfliteDatabaseHelper implements DatabaseHelper {
       version: 1,
       onCreate: (db, _) {
         return db.execute(
-            "CREATE TABLE IF NOT EXISTS food ( id INTEGER PRIMARY KEY, name TEXT NOT NULL, calories REAL, carbs REAL, proteins REAL, fats REAL, is_deleted BOOLEAN DEFAULT FALSE );" +
+            "CREATE TABLE IF NOT EXISTS food ( id INTEGER PRIMARY KEY, name TEXT NOT NULL, calories REAL, carbs REAL, proteins REAL, fats REAL, isDeleted BOOLEAN DEFAULT FALSE );" +
                 "CREATE TABLE IF NOT EXISTS meal ( id INTEGER PRIMARY KEY, datetime DATETIME NOT NULL, food_id INTEGER NOT NULL, FOREIGN KEY (food_id) REFERENCES food(id) );");
       },
     );
