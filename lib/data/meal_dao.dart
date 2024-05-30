@@ -1,6 +1,5 @@
 import 'package:macro_counter/data/dao.dart';
 import 'package:macro_counter/data/database_helper.dart';
-import 'package:macro_counter/models/food.dart';
 import 'package:macro_counter/models/meal.dart';
 import 'package:sqflite/sqflite.dart';
 
