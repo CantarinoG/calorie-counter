@@ -17,6 +17,7 @@ import 'package:macro_counter/providers/io_object_provider.dart';
 import 'package:macro_counter/providers/meal_provider.dart';
 import 'package:macro_counter/providers/object_provider.dart';
 import 'package:macro_counter/providers/user_settings_provider.dart';
+import 'package:macro_counter/screens/scaffold_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -58,7 +59,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueGrey),
           useMaterial3: true,
         ),
-        home: const Placeholder(),
+        home: ScaffoldScreen(),
       ),
     );
   }
