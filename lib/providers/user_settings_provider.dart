@@ -21,5 +21,6 @@ class UserSettingsProvider
   Future<void> addObject(UserSettings object) async {
     await _userSettingsDao.insert(object);
     settings = object;
+    notifyListeners();
   }
 }
