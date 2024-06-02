@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:macro_counter/screens/food_form_screen.dart';
 import 'package:macro_counter/screens/foods_screen.dart';
+import 'package:macro_counter/screens/meal_form_screen.dart';
 import 'package:macro_counter/screens/meals_screen.dart';
 import 'package:macro_counter/screens/settings_screen.dart';
 
@@ -17,14 +19,31 @@ class _ScaffoldScreenState extends State<ScaffoldScreen> {
     {
       "title": "Meals",
       "screen": MealsScreen(),
+      "fabAction": (BuildContext context) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => MealFormScreen(),
+          ),
+        );
+      },
     },
     {
       "title": "Foods",
       "screen": FoodsScreen(),
+      "fabAction": (BuildContext context) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => FoodFormScreen(),
+          ),
+        );
+      },
     },
     {
       "title": "Settings",
       "screen": SettingsScreen(),
+      "fabAction": null,
     },
   ];
 
@@ -35,11 +54,15 @@ class _ScaffoldScreenState extends State<ScaffoldScreen> {
         title: Text(screens[selectedIndex]["title"]),
         backgroundColor: Colors.lightBlue[100],
       ),
-      body: StatefulBuilder(
-        builder: (BuildContext context, StateSetter setState) {
-          return screens[selectedIndex]["screen"];
-        },
-      ),
+      floatingActionButton: (screens[selectedIndex]["fabAction"] == null)
+          ? null
+          : FloatingActionButton(
+              onPressed: () {
+                screens[selectedIndex]["fabAction"](context);
+              },
+              child: const Icon(Icons.add),
+            ),
+      body: screens[selectedIndex]["screen"] as Widget,
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
