@@ -40,9 +40,9 @@ class MyApp extends StatelessWidget {
     IoDao<UserSettings> userSettingsDao =
         UserSettingsDao(sharedPreferencesHelper);
 
-    ObjectProvider<Food> foodProvider = FoodProvider(foodDao);
-    ObjectProvider<Meal> mealProvider = MealProvider(mealDao);
-    IoObjectProvider<UserSettings> userSettingsProvider =
+    FoodProvider foodProvider = FoodProvider(foodDao);
+    MealProvider mealProvider = MealProvider(mealDao);
+    UserSettingsProvider userSettingsProvider =
         UserSettingsProvider(userSettingsDao);
     IdProvider idProvider = IdProviderDt();
 
