@@ -9,6 +9,10 @@ class FoodProvider with ChangeNotifier implements ObjectProvider<Food> {
 
   FoodProvider(this._foodDao);
 
+  void sortList() {
+    foods.sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
+  }
+
   @override
   List<Food> get objects {
     return foods;
@@ -17,6 +21,7 @@ class FoodProvider with ChangeNotifier implements ObjectProvider<Food> {
   @override
   Future<void> loadObjects() async {
     foods = await _foodDao.readAll();
+    sortList();
     notifyListeners();
   }
 
