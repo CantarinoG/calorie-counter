@@ -18,6 +18,10 @@ class FoodProvider with ChangeNotifier implements ObjectProvider<Food> {
     return foods;
   }
 
+  List<Food> get validObjects {
+    return foods.where((food) => !food.isDeleted).toList();
+  }
+
   @override
   Future<void> loadObjects() async {
     foods = await _foodDao.readAll();

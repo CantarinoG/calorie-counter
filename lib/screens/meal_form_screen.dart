@@ -31,7 +31,7 @@ class MealFormScreen extends StatelessWidget {
     double quantity = editedMeal?.quantity ?? 1;
     int? foodId = editedMeal?.foodId ?? null;
 
-    List<Food> foodList = Provider.of<FoodProvider>(context).objects;
+    List<Food> foodList = Provider.of<FoodProvider>(context).validObjects;
 
     return Scaffold(
       appBar: AppBar(
