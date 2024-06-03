@@ -1,11 +1,13 @@
 class Meal {
   final int id;
   final DateTime datetime;
+  final double quantity;
   final int foodId;
 
   Meal(
     this.id,
     this.datetime,
+    this.quantity,
     this.foodId,
   );
 
@@ -13,6 +15,7 @@ class Meal {
     return Meal(
       map['id'],
       map['datetime'],
+      map['quantity'],
       map['foodId'],
     );
   }
@@ -21,6 +24,7 @@ class Meal {
     return {
       'id': id,
       'datetime': datetime.toString(),
+      'quantity': quantity,
       'foodId': foodId,
     };
   }
