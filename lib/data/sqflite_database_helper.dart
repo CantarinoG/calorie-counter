@@ -16,10 +16,11 @@ class SqfliteDatabaseHelper implements DatabaseHelper {
     return openDatabase(
       join(dbPath, _databaseName),
       version: 1,
-      onCreate: (db, _) {
+      onOpen: (db) {
+        db.execute(
+            "CREATE TABLE IF NOT EXISTS food ( id INTEGER PRIMARY KEY, name TEXT NOT NULL, calories REAL, carbs REAL, proteins REAL, fats REAL, isDeleted BOOLEAN DEFAULT FALSE );");
         return db.execute(
-            "CREATE TABLE IF NOT EXISTS food ( id INTEGER PRIMARY KEY, name TEXT NOT NULL, calories REAL, carbs REAL, proteins REAL, fats REAL, isDeleted BOOLEAN DEFAULT FALSE );" +
-                "CREATE TABLE IF NOT EXISTS meal ( id INTEGER PRIMARY KEY, datetime DATETIME NOT NULL, quantity REAL NOT NULL,foodId INTEGER NOT NULL);");
+            "CREATE TABLE IF NOT EXISTS meal ( id INTEGER PRIMARY KEY, datetime DATETIME NOT NULL, quantity REAL NOT NULL,foodId INTEGER NOT NULL);");
       },
     );
   }

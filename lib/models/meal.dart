@@ -14,7 +14,7 @@ class Meal {
   static Meal fromMap(Map<String, dynamic> map) {
     return Meal(
       map['id'],
-      map['datetime'],
+      DateTime.parse(map['datetime']),
       map['quantity'],
       map['foodId'],
     );
