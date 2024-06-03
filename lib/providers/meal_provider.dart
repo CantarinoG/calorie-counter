@@ -47,4 +47,14 @@ class MealProvider with ChangeNotifier implements ObjectProvider<Meal> {
     await _mealDao.delete(id);
     await loadObjects();
   }
+
+  List<Meal> filterMealsByDay(DateTime targetDay) {
+    return meals.where((meal) => isSameDay(meal.datetime, targetDay)).toList();
+  }
+
+  bool isSameDay(DateTime date1, DateTime date2) {
+    return date1.year == date2.year &&
+        date1.month == date2.month &&
+        date1.day == date2.day;
+  }
 }
