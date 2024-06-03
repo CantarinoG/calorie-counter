@@ -25,7 +25,7 @@ class Food {
       map['carbs'],
       map['proteins'],
       map['fats'],
-      map['isDeleted'],
+      (map['isDeleted'] == 0) ? false : true,
     );
   }
 

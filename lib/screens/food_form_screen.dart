@@ -1,12 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:macro_counter/models/food.dart';
+import 'package:macro_counter/providers/food_provider.dart';
+import 'package:macro_counter/providers/id_provider_dt.dart';
+import 'package:provider/provider.dart';
 
 class FoodFormScreen extends StatelessWidget {
   Food? editedFood;
   FoodFormScreen({super.key, this.editedFood});
 
+  void _onSubmit(BuildContext context, Food food) async {
+    final FoodProvider provider =
+        Provider.of<FoodProvider>(context, listen: false);
+    if (editedFood == null) {
+      //Adding
+      await provider.addObject(food);
+    } else {
+      //Updating
+      await provider.updateObject(food);
+    }
+    Navigator.pop(context);
+  }
+
   @override
   Widget build(BuildContext context) {
+    int uniqueId = editedFood?.id ??
+        Provider.of<IdProviderDt>(context, listen: false).generate();
     String name = editedFood?.name ?? "";
     double calories = editedFood?.calories ?? 0;
     double carbs = editedFood?.carbs ?? 0;
@@ -87,7 +105,11 @@ class FoodFormScreen extends StatelessWidget {
               children: [
                 Expanded(
                   child: ElevatedButton.icon(
-                    onPressed: () {},
+                    onPressed: () {
+                      Food newFood =
+                          Food(uniqueId, name, calories, carbs, proteins, fats);
+                      _onSubmit(context, newFood);
+                    },
                     icon: const Icon(Icons.check),
                     label: const Text("Confirmar"),
                     style: ButtonStyle(

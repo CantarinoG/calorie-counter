@@ -11,11 +11,8 @@ import 'package:macro_counter/models/food.dart';
 import 'package:macro_counter/models/meal.dart';
 import 'package:macro_counter/models/user_settings.dart';
 import 'package:macro_counter/providers/food_provider.dart';
-import 'package:macro_counter/providers/id_provider.dart';
 import 'package:macro_counter/providers/id_provider_dt.dart';
-import 'package:macro_counter/providers/io_object_provider.dart';
 import 'package:macro_counter/providers/meal_provider.dart';
-import 'package:macro_counter/providers/object_provider.dart';
 import 'package:macro_counter/providers/user_settings_provider.dart';
 import 'package:macro_counter/screens/scaffold_screen.dart';
 import 'package:provider/provider.dart';
@@ -44,7 +41,7 @@ class MyApp extends StatelessWidget {
     MealProvider mealProvider = MealProvider(mealDao);
     UserSettingsProvider userSettingsProvider =
         UserSettingsProvider(userSettingsDao);
-    IdProvider idProvider = IdProviderDt();
+    IdProviderDt idProvider = IdProviderDt();
 
     return MultiProvider(
       providers: [
