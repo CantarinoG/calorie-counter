@@ -26,4 +26,8 @@ class DateFormatter {
 
     return '${getMonthName(month)} ${day.toString()}, ${year.toString()}';
   }
+
+  String formatTime(DateTime dateTime) {
+    return dateTime.toString().substring(11, 16);
+  }
 }
