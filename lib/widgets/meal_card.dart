@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:macro_counter/models/food.dart';
 import 'package:macro_counter/models/meal.dart';
+import 'package:macro_counter/providers/meal_provider.dart';
+import 'package:macro_counter/screens/meal_form_screen.dart';
 import 'package:macro_counter/utils/date_formatter.dart';
+import 'package:provider/provider.dart';
 
 class MealCard extends StatelessWidget {
   final Meal meal;
@@ -9,9 +12,20 @@ class MealCard extends StatelessWidget {
   final DateFormatter formatter = DateFormatter();
   MealCard(this.meal, this.food, {super.key});
 
-  void _onUpdate(BuildContext context) {}
+  void _onUpdate(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => MealFormScreen(
+          editedMeal: meal,
+        ),
+      ),
+    );
+  }
 
-  void _onDelete(BuildContext context) {}
+  void _onDelete(BuildContext context) {
+    Provider.of<MealProvider>(context, listen: false).deleteObject(meal.id);
+  }
 
   @override
   Widget build(BuildContext context) {
