@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:macro_counter/providers/food_provider.dart';
+import 'package:macro_counter/providers/meal_provider.dart';
 import 'package:macro_counter/screens/food_form_screen.dart';
 import 'package:macro_counter/screens/foods_screen.dart';
 import 'package:macro_counter/screens/meal_form_screen.dart';
 import 'package:macro_counter/screens/meals_screen.dart';
 import 'package:macro_counter/screens/settings_screen.dart';
+import 'package:provider/provider.dart';
 
 class ScaffoldScreen extends StatefulWidget {
-  const ScaffoldScreen({super.key});
+  bool fetchedData = false;
+  ScaffoldScreen({super.key});
 
   @override
   State<ScaffoldScreen> createState() => _ScaffoldScreenState();
@@ -49,6 +53,15 @@ class _ScaffoldScreenState extends State<ScaffoldScreen> {
 
   @override
   Widget build(BuildContext context) {
+    MealProvider mealProvider = Provider.of<MealProvider>(context);
+    FoodProvider foodProvider = Provider.of<FoodProvider>(context);
+
+    if (!widget.fetchedData) {
+      widget.fetchedData = true;
+      mealProvider.loadObjects();
+      foodProvider.loadObjects();
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text(screens[selectedIndex]["title"]),
