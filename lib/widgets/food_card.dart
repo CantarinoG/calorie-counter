@@ -1,9 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:macro_counter/models/food.dart';
+import 'package:macro_counter/providers/food_provider.dart';
+import 'package:macro_counter/screens/food_form_screen.dart';
+import 'package:provider/provider.dart';
 
 class FoodCard extends StatelessWidget {
   final Food food;
   const FoodCard(this.food, {super.key});
+
+  void _onDelete(BuildContext context) {
+    food.isDeleted = true;
+    Provider.of<FoodProvider>(context, listen: false).updateObject(food);
+  }
+
+  void _onUpdate(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => FoodFormScreen(
+          editedFood: food,
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,11 +43,15 @@ class FoodCard extends StatelessWidget {
                 ),
                 IconButton(
                   icon: const Icon(Icons.edit),
-                  onPressed: () {},
+                  onPressed: () {
+                    _onUpdate(context);
+                  },
                 ),
                 IconButton(
                   icon: const Icon(Icons.delete),
-                  onPressed: () {},
+                  onPressed: () {
+                    _onDelete(context);
+                  },
                 ),
               ],
             ),

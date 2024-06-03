@@ -13,8 +13,12 @@ class FoodsScreen extends StatelessWidget {
     List<Food> foodList = foodProvider.objects;
 
     return ListView.builder(
-      itemBuilder: (context, index) =>
-          foodList[index].isDeleted ? null : FoodCard(foodList[index]),
+      itemBuilder: (context, index) => foodList[index].isDeleted
+          ? Container(
+              width: 0,
+              height: 0,
+            )
+          : FoodCard(foodList[index]),
       itemCount: foodList.length,
     );
   }
